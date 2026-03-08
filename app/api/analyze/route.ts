@@ -80,10 +80,10 @@ export async function POST(req: Request) {
 
     } catch (error) {
 
-        console.error(error)
+        console.error("Analyze Error:", error)
 
         return NextResponse.json({
-            error: "Failed to extract video"
+            error: `Failed to extract video: ${error?.message || error}`
         }, { status: 500 })
 
     }

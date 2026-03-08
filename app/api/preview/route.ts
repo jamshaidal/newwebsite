@@ -54,12 +54,12 @@ export async function POST(req: Request) {
             preview: "/temp/preview.jpg"
         })
 
-    } catch (error) {
+    } catch (error: any) {
 
-        console.error(error)
+        console.error("Preview Error:", error)
 
         return NextResponse.json(
-            { error: "Preview generation failed" },
+            { error: `Preview generation failed: ${error?.message || error}` },
             { status: 500 }
         )
     }

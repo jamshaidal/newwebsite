@@ -63,11 +63,11 @@ export async function POST(req: Request) {
             }
         })
 
-    } catch (error) {
-        console.error(error)
+    } catch (error: any) {
+        console.error("Download Error:", error)
         if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath)
         return NextResponse.json(
-            { error: "Download failed" },
+            { error: `Download failed: ${error?.message || error}` },
             { status: 500 }
         )
     }

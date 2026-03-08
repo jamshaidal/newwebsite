@@ -35,12 +35,12 @@ export async function POST(req: Request) {
             downloadUrl: directUrl
         })
 
-    } catch (error) {
+    } catch (error: any) {
 
-        console.error(error)
+        console.error("Generate Link Error:", error)
 
         return NextResponse.json(
-            { error: "Failed to generate download link" },
+            { error: `Failed to generate download link: ${error?.message || error}` },
             { status: 500 }
         )
     }
