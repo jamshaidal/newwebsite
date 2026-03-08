@@ -3,6 +3,7 @@ import { execa } from "execa"
 import fs from "fs"
 import path from "path"
 import { randomUUID } from "crypto"
+import { getYtDlpPath, getFfmpegPath } from "@/lib/paths"
 import { Readable } from "stream"
 
 export async function POST(req: Request) {
@@ -27,8 +28,8 @@ export async function POST(req: Request) {
             .replace(/[^\w\s.\-\[\]()]/g, "-")
 
         // Use environment variable for path on Render, fallback to local path
-        const ytDlpPath = process.env.YT_DLP_PATH || "/home/naawkszi/python310/bin/yt-dlp"
-        const ffmpegPath = process.env.FFMPEG_PATH || "C:\\Users\\Jamshaid\\Downloads\\ffmpeg-8.0.1-essentials_build\\ffmpeg-8.0.1-essentials_build\\bin\\ffmpeg.exe"
+        const ytDlpPath = getYtDlpPath()
+        const ffmpegPath = getFfmpegPath()
 
         // yt-dlp downloads selected video + best audio and merges via FFmpeg
         await execa(ytDlpPath, [

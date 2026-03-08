@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { execa } from "execa"
 import fs from "fs"
 import path from "path"
+import { getYtDlpPath, getFfmpegPath } from "@/lib/paths"
 
 export async function POST(req: Request) {
 
@@ -26,8 +27,8 @@ export async function POST(req: Request) {
         const previewImage = path.join(tempDir, "preview.jpg")
 
         // Use environment variable for path on Render, fallback to local path
-        const ytDlpPath = process.env.YT_DLP_PATH || "/home/naawkszi/python310/bin/yt-dlp"
-        const ffmpegPath = process.env.FFMPEG_PATH || "ffmpeg"
+        const ytDlpPath = getYtDlpPath()
+        const ffmpegPath = getFfmpegPath()
 
         // Download a low-quality preview video
         await execa(ytDlpPath, [

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { execa } from "execa"
+import { getYtDlpPath } from "@/lib/paths"
 
 export async function POST(req: Request) {
 
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
         }
 
         // Use environment variable for path on Render, fallback to local path
-        const ytDlpPath = process.env.YT_DLP_PATH || "/home/naawkszi/python310/bin/yt-dlp"
+        const ytDlpPath = getYtDlpPath()
 
         // Generate fresh direct video link
         const { stdout } = await execa(ytDlpPath, [
