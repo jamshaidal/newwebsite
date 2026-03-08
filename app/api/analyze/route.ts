@@ -79,7 +79,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json(result)
 
-    } catch (error) {
+    } catch (error: any) {
 
         console.error("Analyze Error:", error)
 
