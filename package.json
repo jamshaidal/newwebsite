@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "render-build": "bash ./render-build.sh",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "execa": "^9.6.1",
     "next": "16.1.6",
+    "node-cron": "^4.2.1",
+    "puppeteer": "^24.38.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
