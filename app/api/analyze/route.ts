@@ -37,8 +37,10 @@ export async function POST(req: Request) {
 
         // extract video info using yt-dlp
         const { stdout } = await execa(ytDlpPath, [
-            "--cookies",
-            "cookies.txt",
+            "--cookies", "cookies.txt",
+            "--extractor-args", "youtube:player_client=android",
+            "--user-agent", "Mozilla/5.0",
+            "--extractor-retries", "3",
             "-J",
             "--no-warnings",
             "--no-playlist",

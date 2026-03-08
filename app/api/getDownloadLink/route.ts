@@ -20,8 +20,10 @@ export async function POST(req: Request) {
 
         // Generate fresh direct video link
         const { stdout } = await execa(ytDlpPath, [
-            "--cookies",
-            "cookies.txt",
+            "--cookies", "cookies.txt",
+            "--extractor-args", "youtube:player_client=android",
+            "--user-agent", "Mozilla/5.0",
+            "--extractor-retries", "3",
             "-g",
             "-f",
             format_id,

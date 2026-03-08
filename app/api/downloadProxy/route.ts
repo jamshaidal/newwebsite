@@ -34,6 +34,9 @@ export async function POST(req: Request) {
         // yt-dlp downloads selected video + best audio and merges via FFmpeg
         await execa(ytDlpPath, [
             "--cookies", "cookies.txt",
+            "--extractor-args", "youtube:player_client=android",
+            "--user-agent", "Mozilla/5.0",
+            "--extractor-retries", "3",
             "--ffmpeg-location", ffmpegPath,
             "-f", `${format_id}+bestaudio/best`,
             "--merge-output-format", "mp4",

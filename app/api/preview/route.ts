@@ -32,6 +32,10 @@ export async function POST(req: Request) {
 
         // Download a low-quality preview video
         await execa(ytDlpPath, [
+            "--cookies", "cookies.txt",
+            "--extractor-args", "youtube:player_client=android",
+            "--user-agent", "Mozilla/5.0",
+            "--extractor-retries", "3",
             "-f",
             "18",
             "-o",
